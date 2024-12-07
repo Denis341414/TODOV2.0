@@ -1,63 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { deleteTask } from "./model/deleteTask";
+import { useTasksStore } from "./store/tasksStore";
+
+const tasksStore = useTasksStore();
+</script>
 
 <template>
   <div class="task-department">
-    <div class="task">
-      <div class="task-title">Название задачи</div>
+    <div class="task" v-for="(task, index) in tasksStore.tasks" :key="index">
+      <div class="task-title">{{ task.title }}</div>
       <div class="task-short-description">
-        Далеко-далеко за словесными горами в стране гласных и согласных живут
-        рыбные тексты. Вдали от всех живут они в буквенных домах
+        {{ task.text }}
       </div>
       <div class="task-buttons">
-        <button class="btn btn-delete">Удалить</button>
-        <button class="btn btn-watch">Посмотреть</button>
-        <button class="btn btn-complete">Завершить</button>
-      </div>
-    </div>
-    <div class="task">
-      <div class="task-title">Название задачи</div>
-      <div class="task-short-description">
-        Далеко-далеко за словесными горами в стране гласных и согласных живут
-        рыбные тексты. Вдали от всех живут они в буквенных домах
-      </div>
-      <div class="task-buttons">
-        <button class="btn btn-delete">Удалить</button>
-        <button class="btn btn-watch">Посмотреть</button>
-        <button class="btn btn-complete">Завершить</button>
-      </div>
-    </div>
-    <div class="task">
-      <div class="task-title">Название задачи</div>
-      <div class="task-short-description">
-        Далеко-далеко за словесными горами в стране гласных и согласных живут
-        рыбные тексты. Вдали от всех живут они в буквенных домах
-      </div>
-      <div class="task-buttons">
-        <button class="btn btn-delete">Удалить</button>
-        <button class="btn btn-watch">Посмотреть</button>
-        <button class="btn btn-complete">Завершить</button>
-      </div>
-    </div>
-    <div class="task">
-      <div class="task-title">Название задачи</div>
-      <div class="task-short-description">
-        Далеко-далеко за словесными горами в стране гласных и согласных живут
-        рыбные тексты. Вдали от всех живут они в буквенных домах
-      </div>
-      <div class="task-buttons">
-        <button class="btn btn-delete">Удалить</button>
-        <button class="btn btn-watch">Посмотреть</button>
-        <button class="btn btn-complete">Завершить</button>
-      </div>
-    </div>
-    <div class="task">
-      <div class="task-title">Название задачи</div>
-      <div class="task-short-description">
-        Далеко-далеко за словесными горами в стране гласных и согласных живут
-        рыбные тексты. Вдали от всех живут они в буквенных домах
-      </div>
-      <div class="task-buttons">
-        <button class="btn btn-delete">Удалить</button>
+        <button class="btn btn-delete" @click="deleteTask(task)">
+          Удалить
+        </button>
         <button class="btn btn-watch">Посмотреть</button>
         <button class="btn btn-complete">Завершить</button>
       </div>
@@ -72,6 +30,7 @@
   max-height: 100vh;
   overflow-y: scroll;
   justify-content: space-between;
+
   grid-template-columns: repeat(2, auto);
   flex: 1;
   .task {
@@ -79,6 +38,7 @@
     box-shadow: 0 0 10px gray;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     gap: 1em;
     padding: 1em;

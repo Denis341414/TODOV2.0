@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { postTask } from "../../../shared/api/post/postTask";
 import { switchFlag } from "../../model/switchFlag";
 import { createTask } from "./model/createTask";
+import { postTask } from "./post/postTask";
 import { useModalStore } from "./store/modalStore";
 
 const modalStore = useModalStore();
